@@ -62,13 +62,11 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
             }
             
             getServletContext().getRequestDispatcher("/WEB-INF/arithmeticCalculator.jsp").forward(request, response);
-            return;
             
         } catch (NumberFormatException e) {
             request.setAttribute("result", "Invalid");
 
             getServletContext().getRequestDispatcher("/WEB-INF/arithmeticCalculator.jsp").forward(request, response);
-            return;
         }        
     }
 }
