@@ -29,19 +29,17 @@ public class AgeCalculatorServlet extends HttpServlet {
             getServletContext().getRequestDispatcher("/WEB-INF/ageCalculator.jsp").forward(request, response);
             return;
         }
-                
-        if (age.matches("\\D")) {
+        
+        try {
+            int nextAge = Integer.parseInt(age) + 1;
+            request.setAttribute("message", "Your age next birthday will be " + nextAge);
+            
+            getServletContext().getRequestDispatcher("/WEB-INF/ageCalculator.jsp").forward(request, response);
+        } catch (NumberFormatException e) {
             request.setAttribute("message", "You must enter a number.");
 
             getServletContext().getRequestDispatcher("/WEB-INF/ageCalculator.jsp").forward(request, response);
             return;
         } 
-        
-        int nextAge = Integer.parseInt(age) + 1;
-        request.setAttribute("message", "Your age next birthday will be " + nextAge);
-        
-        getServletContext().getRequestDispatcher("/WEB-INF/ageCalculator.jsp").forward(request, response);
-        
     }
-
 }
